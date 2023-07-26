@@ -401,12 +401,12 @@ const [foodcat,setfoodcat]=useState([])
 const [fooditem,setfooditem]=useState([])
 
 useEffect(() => {
-  fetch("http://localhost:8000/foodcategory")
+  fetch("https://foodbackend.vercel.app/foodcategory")
     .then((data) => data.json())
     .then((cat) => setfoodcat(cat))
 }, [])
 useEffect(() => {
-  fetch("http://localhost:8000/fooditem")
+  fetch("https://foodbackend.vercel.app/fooditem")
     .then((data) => data.json())
     .then((fitm) => setfooditem(fitm))
 }, [])
@@ -585,7 +585,7 @@ function Login() {
     // validationSchema: formValidationSchema,
     onSubmit: async (values) => {
       console.log("submit");
-      const data = await fetch("http://localhost:8000/user/login", {
+      const data = await fetch("https://foodbackend.vercel.app/user/login", {
         method: "POST",
         headers: {
           "content-type": "application/json"
@@ -672,7 +672,7 @@ function Signin() {
     console.log(newdata);
 
    
-    const data = await fetch("http://localhost:8000/user/signup", {
+    const data = await fetch("https://foodbackend.vercel.app/user/signup", {
         method: "POST",
         headers: {
           "content-type": "application/json"
@@ -808,7 +808,7 @@ function Cart() {
         description: 'Payment for booking',
         image: 'https://your-image-url.com/logo.png',
         handler: function(){
-          let response=fetch("http://localhost:8000/order",{
+          let response=fetch("https://foodbackend.vercel.app/order",{
       method:"POST",
       headers:{
         'content-type':'application/json'
@@ -941,7 +941,7 @@ function Myorder(){
   const[orderdata,setorderdata]=useState("")
 // console.log(orderdata);
   const fetchmyorder=async ()=>{
-     await fetch("http://localhost:8000/orderdata",{
+     await fetch("https://foodbackend.vercel.app/orderdata",{
       method:"POST",
       headers:{
         'content-type':'application/json'
