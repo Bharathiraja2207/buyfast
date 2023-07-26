@@ -400,13 +400,13 @@ const [search,setsearch]=useState('')
 const [foodcat,setfoodcat]=useState([])
 const [fooditem,setfooditem]=useState([])
 
-useEffect(() => {
-  fetch("https://foodbackend.vercel.app/foodcategory")
+useEffect(async() => {
+  await fetch("https://foodbackend.vercel.app/foodcategory")
     .then((data) => data.json())
     .then((cat) => setfoodcat(cat))
 }, [])
-useEffect(() => {
-  fetch("https://foodbackend.vercel.app/fooditem")
+useEffect(async() => {
+  await fetch("https://foodbackend.vercel.app/fooditem")
     .then((data) => data.json())
     .then((fitm) => setfooditem(fitm))
 }, [])
@@ -421,7 +421,7 @@ useEffect(() => {
           return(<div className='row mb-3'>
             <div key={data._id} className='fs-3 m-3'>{data.categoryName}</div>
             <hr/>
-            {fooditem !==[]?fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
+            {fooditem !=[]?fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
 )            .map(filteritems=>{
               return(
 <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'style={{"marginLeft":"30px"}}>
