@@ -400,13 +400,13 @@ const [search,setsearch]=useState('')
 const [foodcat,setfoodcat]=useState([])
 const [fooditem,setfooditem]=useState([])
 
-useEffect(async() => {
-  await fetch("https://foodbackend.vercel.app/foodcategory")
+useEffect(() => {
+  fetch("https://foodbackend.vercel.app/foodcategory")
     .then((data) => data.json())
     .then((cat) => setfoodcat(cat))
 }, [])
-useEffect(async() => {
-  await fetch("https://foodbackend.vercel.app/fooditem")
+useEffect(() => {
+  fetch("https://foodbackend.vercel.app/fooditem")
     .then((data) => data.json())
     .then((fitm) => setfooditem(fitm))
 }, [])
