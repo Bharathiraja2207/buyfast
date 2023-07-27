@@ -403,7 +403,7 @@ function Home() {
     const fetchData = async () => {
       try {
         // Fetch data from the first URL
-         fetch('https://foodbackend.vercel.app/foodcategory')
+         await fetch('https://foodbackend.vercel.app/foodcategory')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -417,7 +417,7 @@ function Home() {
           console.error('Error fetching datacat:', error);
         });
        
-        fetch('https://foodbackend.vercel.app/findallfood')
+        await fetch('https://foodbackend.vercel.app/findallfood')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
