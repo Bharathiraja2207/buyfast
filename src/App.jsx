@@ -393,85 +393,54 @@ function Proudctedroute({children}){
   )
 }
 
-
 function Home() {
 
-const [search,setsearch]=useState('');
-const [foodcat,setfoodcat]=useState([]);
-const [fooditem,setfooditem]=useState([]);
-// const [data1, setData1] = useState([]);
-// const [data2, setData2] = useState([]);
-
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      // Fetch data from the first URL
-      const response1 = await fetch('https://foodbackend.vercel.app/foodcategory');
-      const data1 = await response1.json();
-      setfoodcat(data1);
-
-      // Fetch data from the second URL
-      const response2 = await fetch('https://foodbackend.vercel.app/fooditem');
-      const data2 = await response2.json();
-      setfooditem(data2);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  fetchData();
-}, []);
-
-// useEffect(() => {
-//   // 1st url
-//   fetch("https://foodbackend.vercel.app/foodcategory")
-//     .then((data) => data.json())
-//     .then((cat) => setfoodcat(cat))
-// // 2nd url
-//     fetch("https://foodbackend.vercel.app/fooditem")
-//     .then((data) => data.json())
-//     .then((fitm) => setfooditem(fitm))
-// }, [])
-  return (
-<div >
-    <div><Navbar/></div>
-    <div><Crousel search={search} setsearch={setsearch}/></div>
-      <div className='container'> {/* boootstrap is mobile first */}
+  const [search,setsearch]=useState('')
+  const [foodcat,setfoodcat]=useState([])
+  const [fooditem,setfooditem]=useState([])
+  
+  useEffect(() => {
+    fetch("https://foodbackend.vercel.app/foodcategory")
+      .then((data) => data.json())
+      .then((cat) => setfoodcat(cat))
+  }, [])
+  useEffect(() => {
+    fetch("https://foodbackend.vercel.app/fooditem")
+      .then((data) => data.json())
+      .then((fitm) => setfooditem(fitm))
+  }, [])
+    return (
+  <div >
+      <div><Navbar/></div>
+      <div><Crousel search={search} setsearch={setsearch}/></div>
+      <div className='container'>
         {
-          // foodcat !== []
-          //   ? 
-            foodcat.map((data) => {
-              return (
-                // justify-content-center
-                <div className='row mb-3'>
-                  <div key={data.id} className='fs-3 m-3'>
-                    {data.CategoryName}
-                  </div>
-                  <hr id="hr-success" style={{ height: "4px", backgroundImage: "-webkit-linear-gradient(left,rgb(0, 255, 137),rgb(0, 0, 0))" }} />
-                  {
-                  // fooditem !== [] ? 
-                  fooditem.filter(
-                    (items) => (items.CategoryName === data.CategoryName) && (items.name.toLowerCase().includes(search.toLowerCase())))
-                    .map(filteritems => {
-                      return (
-                        <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
-                          {/* {console.log(filteritems.url)} */}
-                          <Card fooditem={filteritems} options={filteritems.options[0]} ></Card>
-                        </div>
-                      )
-                    })
-                    //  : <div> No Such Data </div>
-                    }
-                </div>
+          foodcat !==[]
+          ?foodcat.map((data)=>{
+            return(<div className='row mb-3'>
+              <div key={data._id} className='fs-3 m-3'>{data.categoryName}</div>
+              <hr/>
+              {fooditem !==[]?fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
+  )            .map(filteritems=>{
+                return(
+  <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'style={{"marginLeft":"30px"}}>
+     <Card fooditem={filteritems} options={filteritems.options[0]}/>
+     </div>
               )
-            })
-            // : ""
-            }
+              })
+               :<div> no dada found</div>}
+              </div>
+            
+            )
+          })
+          :<div>'''''''''</div>
+        }
+       
       </div>
-    <div><Footer/></div>
-</div>
-     )
-}
+      <div><Footer/></div>
+  </div>
+       )
+  }
 function Crousel({search,setsearch}) {
 
   return (
