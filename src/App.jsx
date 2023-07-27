@@ -400,15 +400,24 @@ function Home() {
   const [fooditem,setfooditem]=useState([])
   
   useEffect(() => {
-    fetch("https://foodbackend.vercel.app/foodcategory")
-      .then((data) => data.json())
-      .then((cat) => setfoodcat(cat))
-  }, [])
-  useEffect(() => {
-    fetch("https://foodbackend.vercel.app/fooditem")
-      .then((data) => data.json())
-      .then((fitm) => setfooditem(fitm))
-  }, [])
+    const fetchData = async () => {
+      try {
+        // Fetch data from the first URL
+        const response1 = await fetch('https://foodbackend.vercel.app/foofcategary');
+        const data1 = await response1.json();
+        setfoodcat(data1);
+
+        // Fetch data from the second URL
+        const response2 = await fetch('https://foodbackend.vercel.app/fooditem');
+        const data2 = await response2.json();
+        setfooditem(data2);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
     return (
   <div >
       <div><Navbar/></div>
