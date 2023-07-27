@@ -403,14 +403,34 @@ function Home() {
     const fetchData = async () => {
       try {
         // Fetch data from the first URL
-        const response1 = await fetch('https://foodbackend.vercel.app/foofcategary');
-        const data1 = await response1.json();
-        setfoodcat(data1);
+         fetch('https://foodbackend.vercel.app/foodcategory')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          setfoodcat(data);
+        }).catch(error => {
+          // Handle errors here, including "Network response was not ok"
+          console.error('Error fetching datacat:', error);
+        });
+       
+        fetch('https://foodbackend.vercel.app/findallfood')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          setfooditem(data);
+        }).catch(error => {
+          // Handle errors here, including "Network response was not ok"
+          console.error('Error fetching datafood:', error);
+        });
 
-        // Fetch data from the second URL
-        const response2 = await fetch('https://foodbackend.vercel.app/fooditem');
-        const data2 = await response2.json();
-        setfooditem(data2);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -424,12 +444,16 @@ function Home() {
       <div><Crousel search={search} setsearch={setsearch}/></div>
       <div className='container'>
         {
-          foodcat !==[]
-          ?foodcat.map((data)=>{
+          // foodcat !==[]
+          // ?
+          foodcat.map((data)=>{
             return(<div className='row mb-3'>
               <div key={data._id} className='fs-3 m-3'>{data.categoryName}</div>
               <hr/>
-              {fooditem !==[]?fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
+              {
+              // fooditem !==[]?
+              
+              fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
   )            .map(filteritems=>{
                 return(
   <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'style={{"marginLeft":"30px"}}>
@@ -437,12 +461,13 @@ function Home() {
      </div>
               )
               })
-               :<div> no dada found</div>}
+              //  :<div> no dada found</div>
+               }
               </div>
             
             )
           })
-          :<div>'''''''''</div>
+          // :<div>'''''''''</div>
         }
        
       </div>
