@@ -414,30 +414,32 @@ useEffect(() => {
 <div >
     <div><Navbar/></div>
     <div><Crousel search={search} setsearch={setsearch}/></div>
-    <div className='container'>
-      {
-        foodcat !=[]
-        ?foodcat.map((data)=>{
-          return(<div className='row mb-3'>
-            <div key={data._id} className='fs-3 m-3'>{data.categoryName}</div>
-            <hr/>
-            {fooditem !=[]?fooditem.filter((item)=>(item.categoryName === data.categoryName)&&(item.name.toLowerCase().includes(search.toLowerCase()))
-)            .map(filteritems=>{
-              return(
-<div key={filteritems._id} className='col-12 col-md-6 col-lg-3'style={{"marginLeft":"30px"}}>
-   <Card fooditem={filteritems} options={filteritems.options[0]}/>
-   </div>
-            )
+      <div className='container'> {/* boootstrap is mobile first */}
+        {
+          foodcat !== []
+            ? foodcat.map((data) => {
+              return (
+                // justify-content-center
+                <div className='row mb-3'>
+                  <div key={data.id} className='fs-3 m-3'>
+                    {data.CategoryName}
+                  </div>
+                  <hr id="hr-success" style={{ height: "4px", backgroundImage: "-webkit-linear-gradient(left,rgb(0, 255, 137),rgb(0, 0, 0))" }} />
+                  {fooditem !== [] ? fooditem.filter(
+                    (items) => (items.CategoryName === data.CategoryName) && (items.name.toLowerCase().includes(search.toLowerCase())))
+                    .map(filteritems => {
+                      return (
+                        <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
+                          {console.log(filteritems)}
+                          <Card fooditem={filteritems} options={filteritems.options[0]} ></Card>
+                        </div>
+                      )
+                    }) : <div> No Such Data </div>}
+                </div>
+              )
             })
-             :<div> no dada found</div>}
-            </div>
-          
-          )
-        })
-        :<div>'''''''''</div>
-      }
-     
-    </div>
+            : ""}
+      </div>
     <div><Footer/></div>
 </div>
      )
@@ -520,7 +522,7 @@ function Card({fooditem,options}) {
   }
 
 
-if(food!=[]){
+if(food!==[]){
   if(food.size === size){
     await dispatch({type:"UPDATE",id:fooditem._id,price:finalprice,qty:qty})
     return
@@ -967,7 +969,7 @@ function Myorder(){
 
     <div className='container'>
        <div className='row'>
-        {orderdata!={}?Array(orderdata).map(data=>{
+        {orderdata!=={}?Array(orderdata).map(data=>{
           console.log(data,"data")
           return(
             data.orderdata ?
