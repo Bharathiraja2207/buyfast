@@ -444,8 +444,8 @@ function Home() {
       <div><Crousel search={search} setsearch={setsearch}/></div>
       <div className='container'>
         {
-          foodcat !==[]
-          ?
+          // foodcat !==[]
+          // ?
           foodcat.map((data)=>{
             return(<div className='row mb-3'>
               <div key={data._id} className='fs-3 m-3'>{data.categoryName}</div>
@@ -467,7 +467,7 @@ function Home() {
             
             )
           })
-          :<div>data load</div>
+          // :<div>data load</div>
         }
        
       </div>
