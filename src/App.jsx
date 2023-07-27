@@ -438,8 +438,9 @@ useEffect(() => {
     <div><Crousel search={search} setsearch={setsearch}/></div>
       <div className='container'> {/* boootstrap is mobile first */}
         {
-          foodcat !== []
-            ? foodcat.map((data) => {
+          // foodcat !== []
+          //   ? 
+            foodcat.map((data) => {
               return (
                 // justify-content-center
                 <div className='row mb-3'>
@@ -447,7 +448,9 @@ useEffect(() => {
                     {data.CategoryName}
                   </div>
                   <hr id="hr-success" style={{ height: "4px", backgroundImage: "-webkit-linear-gradient(left,rgb(0, 255, 137),rgb(0, 0, 0))" }} />
-                  {fooditem !== [] ? fooditem.filter(
+                  {
+                  // fooditem !== [] ? 
+                  fooditem.filter(
                     (items) => (items.CategoryName === data.CategoryName) && (items.name.toLowerCase().includes(search.toLowerCase())))
                     .map(filteritems => {
                       return (
@@ -456,11 +459,14 @@ useEffect(() => {
                           <Card fooditem={filteritems} options={filteritems.options[0]} ></Card>
                         </div>
                       )
-                    }) : <div> No Such Data </div>}
+                    })
+                    //  : <div> No Such Data </div>
+                    }
                 </div>
               )
             })
-            : ""}
+            // : ""
+            }
       </div>
     <div><Footer/></div>
 </div>
