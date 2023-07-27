@@ -396,17 +396,17 @@ function Proudctedroute({children}){
 
 function Home() {
 
-const [search,setsearch]=useState('')
-const [foodcat,setfoodcat]=useState([])
-const [fooditem,setfooditem]=useState([])
+const [search,setsearch]=useState('');
+const [foodcat,setfoodcat]=useState([]);
+const [fooditem,setfooditem]=useState([]);
 
 useEffect(() => {
+  // 1st url
   fetch("https://foodbackend.vercel.app/foodcategory")
     .then((data) => data.json())
     .then((cat) => setfoodcat(cat))
-}, [])
-useEffect(() => {
-  fetch("https://foodbackend.vercel.app/fooditem")
+// 2nd url
+    fetch("https://foodbackend.vercel.app/fooditem")
     .then((data) => data.json())
     .then((fitm) => setfooditem(fitm))
 }, [])
