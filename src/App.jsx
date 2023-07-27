@@ -430,7 +430,7 @@ useEffect(() => {
                     .map(filteritems => {
                       return (
                         <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
-                          {console.log(filteritems)}
+                          {/* {console.log(filteritems.url)} */}
                           <Card fooditem={filteritems} options={filteritems.options[0]} ></Card>
                         </div>
                       )
@@ -1024,6 +1024,11 @@ function Myorder(){
 
 
 function Navbar(){
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
   const [cartview,setcartview]=useState(false);
   let data=useCart();
   const handleClick = () => {
@@ -1037,10 +1042,10 @@ function Navbar(){
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
   <div className="container-fluid">
     <Link className="navbar-brand fs-1 fst-italic"  to="/">BuyFast</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" onClick={toggleNav} data-bs-target="#toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
+    <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNav">
       <ul className='navbar-nav me-auto mb-2'>
         <li className='nav-item'>
         <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
@@ -1058,7 +1063,7 @@ function Navbar(){
        
       </div>:
        <div>
-        <div className='btn bg-white text-success mx-2' onClick={()=>{setcartview(true)}}>My Cart{""}<Badge pill bg='danger'>{data.length}</Badge></div>
+        <div id='toggle' className='btn bg-white text-success mx-2' onClick={()=>{setcartview(true)}}>My Cart{""}<Badge pill bg='danger'>{data.length}</Badge></div>
 {cartview ? <Modal onClose={()=>{setcartview(false)}}><Cart/></Modal>:null}
         <Link className="btn bg-white text-success mx-1" to="/signin" onClick={handleClick}>Logout</Link>
         </div>
