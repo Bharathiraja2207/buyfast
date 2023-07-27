@@ -403,7 +403,7 @@ function Home() {
     const fetchData = async () => {
       try {
         // Fetch data from the first URL
-         await fetch('https://foodbackend.vercel.app/foodcategory')
+         await fetch('https://foodbackend.vercel.app/foodcatagory')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
