@@ -805,7 +805,7 @@ function Signin() {
             <button className="m-3 btn btn-success mx-1" color="success" type='submit' variant="contained">{formstate === "success" ? "Signup" : "Retry"}</button>
             <Link className="m-3 btn btn-primary mx-1" to="/login">Already User </Link>
           </div>
-          
+
         </form>
       {/* </Card> */}
     </div>
@@ -837,8 +837,8 @@ function Cart() {
         key_secret: "2TZaVrFSXYnzzu3QeH6N3t3w",
         amount: totalprice*100, // amount in paise (10000 paise = ₹100)
         currency: 'INR',
-        name: 'Book My show',
-        description: 'Payment for booking',
+        name: 'Buyfast',
+        description: 'Payment for bUYING',
         image: 'https://your-image-url.com/logo.png',
         handler: function(){
           let response=fetch("https://foodbackend.vercel.app/order",{
@@ -864,7 +864,7 @@ function Cart() {
           contact:'9597105564'
         },
         notes: {
-          address: 'My Store, India'
+          address: 'buyfast, India'
         },
         theme: {
           color: '#F37254'
@@ -890,7 +890,7 @@ function Cart() {
         <th scope='col'></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className='tbdy'>
       {data.map((food,index)=>(
         <tr>
         <th scope='row'>{index+1}</th>
@@ -904,7 +904,7 @@ function Cart() {
       
     </tbody>
   </table>
-  <div><h1 className='fs-2' id='table'>Total Price: {totalprice}/-</h1></div>
+  <div><h1 style={{color:"white"}}className='fs-2' id='table'>Total Price: {totalprice}/-</h1></div>
   <div><button className='btn bg-success mt-5' onClick={handlecheckout} >check out</button></div>
 </div>
     </div>
