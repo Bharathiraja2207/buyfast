@@ -805,7 +805,7 @@ function Signin() {
             <button className="m-3 btn btn-success mx-1" color="success" type='submit' variant="contained">{formstate === "success" ? "Signup" : "Retry"}</button>
             <Link className="m-3 btn btn-primary mx-1" to="/login">Already User </Link>
           </div>
-
+          
         </form>
       {/* </Card> */}
     </div>
@@ -1070,7 +1070,7 @@ function Navbar(){
     console.log("logout")
   }
   return(
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
   <div className="container-fluid">
     <Link className="navbar-brand fs-1 fst-italic"  to="/">BuyFast</Link>
     <button className="navbar-toggler" type="button" onClick={toggleNav} data-bs-target="#toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
